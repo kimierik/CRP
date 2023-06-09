@@ -1,7 +1,7 @@
 # Quide
 
 all instructions are formatted as such  
-XX  XXXXXX
+XX  XXXXXX  
 CMD params
 
 CMD the 2 most significant bits determine the instruction that will be ruin  
@@ -13,9 +13,10 @@ CMD the 2 most significant bits determine the instruction that will be ruin
 11 inc value  
 
 
-### print
-00   0 0 0 000
-CMD  p f a b
+## print
+|00|0|0|0|000|
+|:---:|:---:|:---:|:---:|:---:|
+|CMD|p|f| a| b|
 
 p = pointer that is used  
  - 0 freePointer
@@ -36,11 +37,12 @@ b= if all b bits are 0 the instruction will not print
 
 
 
-### command instruction
+## command instruction
 runs an instruction X amount of times  
   
-01   0  00000  
-CMD  p  amount  
+|01|0|00000|
+|:---:|:---:|:------:|
+|CMD|p|amount|
 
 p(pointer)= execute command at what pointer
  - 0 freePointer  
@@ -56,11 +58,12 @@ if the instruction at the pointer changes during the execution the command will 
 the instruction pointer does not move automatically when this command is being run   
 
 
-### inc pointer
+## inc pointer
 moves a pointer  
   
-10   0   00000
-cmd  p   amount
+|10|0|00000|
+|:---:|:---:|:------:|
+|CMD|p|amount|
 
 p(pointer)= what pointer to increment  
  - 0 freePointer  
@@ -69,11 +72,12 @@ p(pointer)= what pointer to increment
 amount = how mutch to increment 
  - 00000 means 1
 
-### inc value
+## inc value
 increments a value et a pointer  
   
-11   0   00000
-cmd  p   amount
+|11|0|00000|
+|:---:|:---:|:------:|
+|CMD|p|amount|
 
 p(pointer)= increment value at pointer
  - 0 freePointer  
