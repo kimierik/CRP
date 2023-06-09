@@ -1,8 +1,9 @@
 # Quide
 
 all instructions are formatted as such  
-XX  XXXXXX  
-CMD params
+|XX|XXXXXX|
+|:--:|:--:|
+|CMD| params|
 
 CMD the 2 most significant bits determine the instruction that will be ruin  
 
@@ -58,7 +59,7 @@ if the instruction at the pointer changes during the execution the command will 
 the instruction pointer does not move automatically when this command is being run   
 
 
-## inc pointer
+## increment pointer
 moves a pointer  
   
 |10|0|00000|
@@ -72,7 +73,7 @@ p(pointer)= what pointer to increment
 amount = how mutch to increment 
  - 00000 means 1
 
-## inc value
+## increment value
 increments a value et a pointer  
   
 |11|0|00000|
