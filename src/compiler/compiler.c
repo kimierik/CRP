@@ -76,7 +76,7 @@ int main(int argc, char* argv[]){
 
         // convert char[] into int
         for (int i=2; i>=0; i--) {
-            if (buffer[i]!=10 && buffer[i]!=0 &&buffer[i]==' '){
+            if (buffer[i]>='0' && buffer[i]<='9'){
                 num += (buffer[i]-0x30)*current_mul;
                 current_mul*=10;
             }
