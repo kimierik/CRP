@@ -65,23 +65,27 @@ int main(int argc, char* argv[]){
     fptr=fopen(filename,"r");
 
 
-    char buffer[10];
+    char buffer[5];
 
     //read file
-    while (fgets(buffer,10,fptr)){
+    while (fgets(buffer,5,fptr)){
         
         int num=0;
         
         int current_mul=1;
+        int converted=0;
 
         // convert char[] into int
         for (int i=2; i>=0; i--) {
             if (buffer[i]>='0' && buffer[i]<='9'){
                 num += (buffer[i]-0x30)*current_mul;
                 current_mul*=10;
+                converted=1;
             }
         }
-        nums[numpoinr++]=num;
+        if (converted){
+            nums[numpoinr++]=num;
+        }
     }
 
     
