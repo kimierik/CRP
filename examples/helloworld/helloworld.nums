@@ -1,4 +1,6 @@
-150
+150     ;move freepointer to start of hello world
+128     ;increment freepointer one
+1       ;print
 128
 1
 128
@@ -19,10 +21,8 @@
 1
 128
 1
-128
-1
-190
-104
+190       ; move instrucion pointer over hello world
+104       ; hello world
 101
 108
 108
