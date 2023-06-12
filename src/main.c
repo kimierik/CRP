@@ -3,6 +3,9 @@
 
 #define SIZE 256
 
+//pointer to the instruction that is ran next
+//pointer that the user can move at will
+//list of bytes
 struct Program{
     int instructionPointer;
     int freePointer;
@@ -12,30 +15,50 @@ struct Program{
 
 //modifies input 
 void readFileToBuffer(struct Program* program, char* filename){
-    //read file 
-    //whatever into the thing
+
+    int nums[256];
+    //index
+    int numpoinr=0;
+
     FILE *fptr;
     fptr=fopen(filename,"r");
-    char thing[2];
 
-    int index=0;
+    //buffer to write to from the file
+    char buffer[5];
 
-    while (fgets(thing,2,fptr)){
-        //printf("%s\n",thing);
-        program->program[index++]=thing[0];
+    //read file
+    while (fgets(buffer,5,fptr)){
+        
+        int num=0;
+        
+        int current_mul=1;
+        int converted=0;
+
+        // convert char[] into int
+        for (int i=2; i>=0; i--) {
+            if (buffer[i]>='0' && buffer[i]<='9'){
+                num += (buffer[i]-0x30)*current_mul;
+                current_mul*=10;
+                converted=1;
+            }
+        }
+        if (converted){
+            nums[numpoinr++]=num;
+        }
     }
 
-    //debug printing
-    /*
-    printf("read this file\n");
-    for (int i=0; i<index; i++) {
-        printf("%i\n ",program->program[i] );
+    
+    fclose(fptr);
+
+    //write nums into program buffer
+    for (int i=0; i<numpoinr;i++){
+        program->program[i]=nums[i];
     }
-     * */
 
 }
 
 
+//checks if bit of byte at postion is 1 or 0
 int checkBit(int byte, int position){
     return byte & (1<<position);
 }
@@ -117,8 +140,15 @@ void interpretCommand(struct Program *program ,int command){
 
         //if we are incrementing pointer or value at pointer
         if (!checkBit(command, 8-2)){
-            //printf("increment pointer %i\n",command);
-            *pointer+=amount;
+            
+            //check if pointer will go over the size of the byte list
+            if (*pointer + amount < SIZE-1){
+                *pointer+=amount;
+            }
+            else{
+                *pointer -=SIZE-1;
+            }
+
         }else{
             //printf("increment value  %i\n",command);
             program->program[*pointer]+=amount;
@@ -185,6 +215,7 @@ int main(int argc, char * argv[]){
     program.instructionPointer=0;
     program.freePointer=0;
 
+    //read a file of numbers into the program buffer
     readFileToBuffer(&program, filename);
 
     //interpret program
