@@ -5,7 +5,7 @@ all instructions are formatted as such
 |:--:|:--:|
 |CMD| params|
 
-CMD the 2 most significant bits determine the instruction that will be ruin  
+CMD the 2 most significant bits determine the instruction that will be run  
 
 ## instructions 
 00 PRINT  
@@ -70,11 +70,11 @@ p(pointer)= what pointer to increment
  - 0 freePointer  
  - 1 instructionPointer  
 
-amount = how mutch to increment 
+amount = how much to increment 
  - 00000 means 1
 
 ## increment value
-increments a value et a pointer  
+increments a value at pointer  
   
 |11|0|00000|
 |:---:|:---:|:------:|
@@ -84,7 +84,7 @@ p(pointer)= increment value at pointer
  - 0 freePointer  
  - 1 instructionPointer  
 
-amount = how mutch to increment 
+amount = how much to increment 
  - 00000 means 1
 
 
